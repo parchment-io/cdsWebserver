@@ -1,7 +1,23 @@
 # Dockerfile to build the EdExchange Directory Server
 
+# To build the image
 # docker build -t wowen/directory_server --no-cache .
-# docker run -d -p 80:80 -p 3306:3306 --name edex-ds -v //opt/projects/cccdev/cdsWebserver/:/opt/edexchange wowen/directory_server
+# 
+# To run a container
+# 
+# docker run -d -p 80:80 -p 3306:3306 --name edex-ds -v //local/path/to/source/:/opt/edexchange wowen/directory_server
+# 
+# Running scripts
+# docker exec edex-ds //opt/tomcat-start.sh
+# docker exec edex-ds //opt/webapp-deploy.sh
+# 
+# Usefull docker commands
+# 
+# This command will send the catalina.out log to your console, default directory
+# the container's default directory is /usr/local/tomcat
+# docker exec edex-ds tail -f logs/catalina.out
+# 
+# The `docker logs edex-ds` command will output the mariadb logs
 
 From tomcat:7
 MAINTAINER Wes Owen <wowen@ccctechcenter.org>
@@ -11,6 +27,9 @@ ENV MYSQL_ROOT_PASSWORD admin123
 ENV MYSQL_USER ccctc
 ENV MYSQL_PASSWORD ccc.dev
 ENV JAVA_HOME /usr
+
+# if this isn't set then I get an error when I try to use mysql in the container
+ENV TERM xterm-256color
 
 RUN apt-get -y update && apt-get install -y apache2
 
