@@ -1,14 +1,14 @@
-mariadb:
+dir_db_image:
   build: ./directoryServer/src/main/docker/db
   ports:
    - "3306:3306"
-  container_name: directory_db
-directory_server:
+  container_name: dir_db
+dir_app_image:
   build: ./directoryServer/src/main/docker/
   volumes:
      - .:/opt/edexchange
   ports:
    - "80:80"
   links:
-   - mariadb
-  container_name: directory_app
+   - dir_db_image
+  container_name: dir_app
