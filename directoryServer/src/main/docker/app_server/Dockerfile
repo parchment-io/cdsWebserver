@@ -42,5 +42,6 @@ ADD ./tomcat-start.sh /opt/tomcat-start.sh
 ADD ./tomcat-stop.sh /opt/tomcat-stop.sh
 ADD ./webapp-deploy.sh /opt/webapp-deploy.sh
 ADD ./webapp-remove.sh /opt/webapp-remove.sh
+ADD ./directory_server.xml /usr/local/tomcat/conf/Catalina/localhost/directory_server.xml
 
 CMD /usr/local/tomcat/bin/catalina.sh run

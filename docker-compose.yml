@@ -7,7 +7,6 @@ edex_ds_app_image:
   build: ./directoryServer/src/main/docker/app_server
   volumes:
      - .:/opt/edexchange
-     - ./directoryServer/target/EdExchange:/usr/local/tomcat/webapps/EdExchange
   expose:
    - "8009"
   ports:
