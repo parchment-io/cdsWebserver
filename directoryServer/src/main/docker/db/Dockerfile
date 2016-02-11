@@ -19,19 +19,13 @@ RUN /usr/bin/mysqld_safe & \
 
 RUN echo "bind_address = 0.0.0.0" >> /etc/mysql/conf.d/mariadb.cnf
 
-
 RUN unset MYSQL_ROOT_PASSWORD
 RUN unset MYSQL_USER
 RUN unset MYSQL_PASSWORD
-
-# multi-application startup
-ADD ./startup.sh /opt/startup.sh
-
-RUN chmod 775 /opt/*.sh
 
 # if this isn't set then I get an error when I try to use mysql in the container
 ENV TERM xterm-256color
 
 EXPOSE 3306
-CMD /opt/startup.sh
+CMD exec mysqld_safe
 
