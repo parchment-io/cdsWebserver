@@ -24,11 +24,13 @@ Pre-requisites:
 
 Developer work flow:
 1) Clone the GIT repo
+
 2) From the root of the GIT repo, invoke docker compose:  "docker-compose up".  This will build the images, create
 and run the containers.  The first time this is invoked, new images will probably be downloaded, so expect this step
 to take a few minutes at least.  The end result of this command is that the 3 related docker containers will be running
 and the current console window will display output from the app server (tomcat).  The last statement in the console window
 should be similar to "edex-ds-app   | INFO: Server startup in 7142 ms"
+
 3) Verify that all the containers have been started: from the root of the GIT repo, run "docker-compose ps".  This should
 result in output simlar to the following:
 
@@ -41,9 +43,12 @@ edex-ds-proxy   /bin/sh -c /usr/sbin/apach ...   Up      443/tcp, 0.0.0.0:80->80
 If your output shows that one or more of the containers are not running, something failed.  You can look back at the
 console output from "docker-compose up".  Error messages in red should describe related issues. You and also look at
 apache log files which are mounted at ./docker_container_data/edex-ds-proxy/logs
+
 4) At this point, your containers are running, but the directory server still needs to be deployed to the app server
 container and the database initialized.  For this step, invoke "mvn -Denv=ci clean package".  This will create the
-required database on the database server (edex-ds-db) and deploy the app to the app server (edex-ds-app).
+required database on the database server (edex-ds-db) and deploy the app to the app server (edex-ds-app).  You can
+optionally just run the "deploy.sh" script in the root directory.
+
 5) Verify that you can browse to the app server.  For this step, you should verify that
 "http://172.17.0.4/directory_server/login" renders the directory server's login page.  Note that by default, if no
 other docker containers were running before invoking "docker-compose up", docker will use the following IP addresses:
