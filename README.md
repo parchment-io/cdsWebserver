@@ -36,7 +36,7 @@ The mission of the PESC CDS taskforce is to improve security, reliability, effic
 
 ### Directory Server
 
-You will need a tomcat instance and a mariadb (or mysql) database server up and running and accessible from the source code location.
+You will need a servlet container such as Tomcat or Jetty and a mariadb (or mysql) database server up and running and accessible from the source code location.
 
 1. Pull down the source code to a local working directory
 2. Change the `liquibase.url`, `liquibase.username`, and `liquibase.password` values in `directoryServer/src/main/filters/filters.dev.properties` for your database.
@@ -61,4 +61,6 @@ You will need a tomcat instance and a mariadb (or mysql) database server up and 
 
 **Docker-ized**
 
-In the `src/main/docker` directory there is a docker file that can be used with the `docker build` command to build an image containing the database, tomcat, and apache.
+In the root directory of this repo, there is a docker-compose.yml file that will bring up a set of docker containers
+that the developer can use without additional work. Please consult the README.md file in the directoryServer/src/main/docker
+directory for instructions on how to use docker and docker-compose to configure your dev environment.

@@ -21,5 +21,5 @@ edex_ds_proxy_image:
     links:
       - edex_ds_app_image
     volumes:
-     - ./logs:/var/log/apache2
+     - ./docker_container_data/edex-ds-proxy/logs:/var/log/apache2
     container_name: edex-ds-proxy

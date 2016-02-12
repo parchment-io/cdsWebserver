@@ -1,27 +1,8 @@
-# Dockerfile to build the EdExchange Directory Server
-
-# To build the image
-# docker build -t wowen/directory_server --no-cache .
-# 
-# To run a container
-# 
-# docker run -d -p 80:80 -p 3306:3306 --name edex-ds -v //local/path/to/source/:/opt/edexchange wowen/directory_server
-# 
-# Running scripts
-# docker exec edex-ds //opt/tomcat-start.sh
-# docker exec edex-ds //opt/webapp-deploy.sh
-# 
-# Usefull docker commands
-# 
-# This command will send the catalina.out log to your console, default directory
-# the container's default directory is /usr/local/tomcat
-# docker exec edex-ds tail -f logs/catalina.out
-# 
-# The `docker logs edex-ds` command will output the mariadb logs
+# Dockerfile to build the EdExchange application server
 
 From tomcat:7
-MAINTAINER Wes Owen <wowen@ccctechcenter.org>
-LABEL Description="This image is used to build the EdExchange application server. It must be used in conjunction with the proxy server image and the database image using docker composse"
+MAINTAINER James Whetstone <jwhetstone@ccctechcenter.org>
+LABEL Description="This image is used to build the EdExchange application server. Although it can be created using normal docker commands, it's intended use is in conjunction with the proxy server image and the database image using docker compose as described in the README.md"
 
 ENV JAVA_HOME /usr
 

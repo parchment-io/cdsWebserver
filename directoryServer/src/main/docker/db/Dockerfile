@@ -1,6 +1,6 @@
 From debian:8.3
 MAINTAINER Wes Owen <wowen@ccctechcenter.org>
-LABEL Description="This image is used to build the EdExchange Directory Server"
+LABEL Description="This image is used to build the EdExchange Directory database server"
 
 ENV MYSQL_ROOT_PASSWORD admin123
 ENV MYSQL_USER ccctc
