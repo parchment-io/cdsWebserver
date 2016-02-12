@@ -1,25 +1,40 @@
 edex_ds_db_image:
-  build: ./directoryServer/src/main/docker/db
+  build: ./docker/db
   expose:
    - "3306"
   container_name: edex-ds-db
+edex_ns_db_image:
+    build: ./docker/db
+    expose:
+     - "3306"
+    container_name: edex-ns-db
 edex_ds_app_image:
-  build: ./directoryServer/src/main/docker/app_server
+  build: ./docker/app_server
   volumes:
      - .:/opt/edexchange
   expose:
    - "8009"
-  ports:
-   - "8080:8080"
   links:
    - edex_ds_db_image
   container_name: edex-ds-app
-edex_ds_proxy_image:
-    build: ./directoryServer/src/main/docker/proxy_server
+edex_ns_app_image:
+      build: ./docker/ns_app_server
+      volumes:
+         - .:/opt/edexchange
+      expose:
+       - "8009"
+      ports:
+       - "8080:8080"
+      links:
+       - edex_ns_db_image
+      container_name: edex-ns-app
+edex_proxy_image:
+    build: ./docker/proxy_server
     ports:
       - "80:80"
     links:
       - edex_ds_app_image
+      - edex_ns_app_image
     volumes:
-     - ./docker_container_data/edex-ds-proxy/logs:/var/log/apache2
-    container_name: edex-ds-proxy
+     - ./docker_container_data/edex-proxy/logs:/var/log/apache2
+    container_name: edex-proxy
