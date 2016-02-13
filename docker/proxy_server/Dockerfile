@@ -18,5 +18,6 @@ EXPOSE 80 443
 ADD ./000-default.conf /etc/apache2/sites-available/000-default.conf
 
 RUN a2enmod proxy_ajp
+RUN a2enmod rewrite
 
 CMD /usr/sbin/apache2ctl -D FOREGROUND

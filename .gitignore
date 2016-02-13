@@ -4,6 +4,7 @@ out/
 directoryServer/target/
 directoryServer/src/main/webapp/WEB-INF/jetty-env.xml
 docker_container_data/
+networkServer/target/
 
 
 
